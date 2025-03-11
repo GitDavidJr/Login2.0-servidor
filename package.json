@@ -1,7 +1,7 @@
 {
   "name": "login2.0-servidor",
   "version": "1.0.0",
-  "type":"module",
+  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "bcrypt": "^5.1.1",
     "express": "^4.21.2"
   }
 }

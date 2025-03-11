@@ -1,3 +1,9 @@
+/* 
+    MongoDB
+    user: David
+    password: David1234
+*/
+
 import express from 'express'
 
 const app = express()
