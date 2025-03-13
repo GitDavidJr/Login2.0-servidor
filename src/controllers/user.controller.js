@@ -1,6 +1,6 @@
 export const postUser = async (request, reply) => {
 
-    
+    console.log("request de dados")
 
     return reply.status(200).send({
         user: {

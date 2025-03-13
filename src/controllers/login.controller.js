@@ -1,9 +1,10 @@
 import { auth } from "../services/auth.service.js";
 
 export const postLogin = async (request, reply) =>{
-    const dadosLogin = request.body; 
 
-    console.log(dadosLogin)
+    console.log("Tentativa de login")
+
+    const dadosLogin = request.body; 
 
     const user = await auth(dadosLogin.email, dadosLogin.password)
 
