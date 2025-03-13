@@ -1,7 +1,7 @@
-import {postUser} from "../controllers/user.controller.js";
+import { postUser } from "../controllers/user.controller.js";
 
-const loginRoutes = async (app, options) => {
+const UserRoutes = async (app, options) => {
   app.post("/", postUser);
 };
 
-export default loginRoutes;
+export default UserRoutes;

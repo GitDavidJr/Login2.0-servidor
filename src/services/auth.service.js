@@ -29,7 +29,7 @@ export const auth = async (email, password) => {
     const userAuth = await comparePassword(password, user.password_hash) ? user : null
     // 3. Retornar dados do usuário autenticado
     return userAuth
-    
+
 }
 
 

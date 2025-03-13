@@ -11,3 +11,14 @@ export const findUserEmail = async (email) => {
 
     return user
 }
+
+export const findUserJWT = async (id, email) => {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: id,
+            email: email
+        }
+    })
+
+    return user
+}
