@@ -1,22 +1,22 @@
 import Fastify from "fastify";
+import fastifyCors from "@fastify/cors"; // Use @fastify/cors (versão mais atual)
 import fastifyJwt from "fastify-jwt";
 import userRoutes from "./routes/user.routes.js";
 import loginRoutes from "./routes/login.routes.js";
 import authHook from "./hooks/auth.hook.js";
 import indexRoutes from "./routes/index.routes.js";
-import fastifyCors from 'fastify-cors';
 
 const app = Fastify();
 
 console.log("Iniciando o servidor...");
 
-
-/* so consigo ter acesso ao back end pelo mesmo dominio usando terminal, thunder client e insomnia, mas não consigo acessar pelo front end, não sei se é por causa do cors, mas quando adiciono o cors no app.register, nem pelo mesmo dominio consigo acessar o back end. */
-
-/* app.register(fastifyCors, {
-  origin: "*",
-}); */
- 
+// Adicionando CORS corretamente
+app.register(fastifyCors, {
+  origin: "*", // Permitir requisições de qualquer origem (para teste)
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Permitir cabeçalhos
+  credentials: true, // Permite envio de cookies/tokens
+});
 
 app.register(fastifyJwt, {
   secret: process.env.SECRET_KEY,
@@ -25,17 +25,13 @@ app.register(fastifyJwt, {
   },
 });
 
-console.log("Fastify configurado com CORS e JWT");
-
 const port = process.env.PORT ? Number(process.env.PORT) : 3333;
 app.addHook("onRequest", authHook);
-
-console.log("Registrando rotas...");
 
 app.register(loginRoutes, { prefix: "/login" });
 app.register(userRoutes, { prefix: "/protected-user" });
 app.register(indexRoutes, { prefix: "/" });
 
 app.listen({ host: "0.0.0.0", port: port }, () => {
-    console.log(`Servidor Fastify rodando na porta ${port}`);
+  console.log(`Servidor Fastify rodando na porta ${port}`);
 });
