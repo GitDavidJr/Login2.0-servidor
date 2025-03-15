@@ -1,4 +1,4 @@
-import { getIndex } from "../controllers/index.controller.js";
+import { getIndex } from "../controller/index.controller.js";
 
 const indexRoutes = async (app, options) => {
   app.get("/", getIndex);

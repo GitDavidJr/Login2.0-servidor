@@ -1,4 +1,4 @@
-import { postLogin } from "../controllers/login.controller.js";
+import { postLogin } from "../controller/login.controller.js";
 
 const loginRoutes = async (app, options) => {
   app.post("/", postLogin);

@@ -3,7 +3,7 @@ import fastifyCors from "@fastify/cors"; // Use @fastify/cors (versão mais atua
 import fastifyJwt from "fastify-jwt";
 import userRoutes from "./routes/user.routes.js";
 import loginRoutes from "./routes/login.routes.js";
-import authHook from "./hooks/auth.hook.js";
+import {useAuth} from "./hooks/useAuth.hook.js";
 import indexRoutes from "./routes/index.routes.js";
 
 const app = Fastify();
@@ -26,7 +26,7 @@ app.register(fastifyJwt, {
 });
 
 const port = process.env.PORT ? Number(process.env.PORT) : 3333;
-app.addHook("onRequest", authHook);
+app.addHook("onRequest", useAuth);
 
 app.register(loginRoutes, { prefix: "/login" });
 app.register(userRoutes, { prefix: "/protected-user" });
