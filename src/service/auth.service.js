@@ -19,37 +19,31 @@ obs: se não encontrar usuario ou senha não confere retorna um usuario vazio qu
 
 import { findUserEmail } from "../database/prismaClient.database.js";
 import { comparePassword } from "../helper/hash.helper.js";
+import { hideSensitiveFields } from "../utils/data.utils.js";
 
 export const auth = async (email, password, reply) => {
 
-  // 1. Buscar usuário no banco de dados pelo email
-  const user = await findUserEmail(email);
+    let response = {};
+    
+    // 1. Buscar usuário no banco de dados pelo email
+    const user = await findUserEmail(email);
 
-  // 2. Compara senha fornecida com a senha armazenada
-  const userAuth = (await comparePassword(password, user.password_hash))
-    ? {
-        name: user.name,
-        email: user.email,
-        avatar_url: user.gitHub,
-      }
-    : null;
+    // 2. Verifica se o usuario existe e se a senha confere
+    if (!user || !(await comparePassword(password, user.password_hash))) {
+        response = {
+            message: "Usuário ou senha inválidos",
+        };
 
-  // 3. Retornar dados do usuário autenticado
-  let response = {};
+    } else {
+        const token = await reply.jwtSign({ id: user.id, email: user.email });
 
-  if (!userAuth) {
-    response = {
-      message: "Usuário ou senha inválidos",
-    };
+        response = {
+            user: hideSensitiveFields(userAuth),
+            token: token,
+        };
+        
+    }
 
-  } else {
-    const token = await reply.jwtSign({ id: user.id, email: user.email });
-
-    response = {
-      user: userAuth,
-      token: token,
-    };
-
-    return response
-  }
+    // 3. Retornar dados do usuário autenticado
+    return response;
 };

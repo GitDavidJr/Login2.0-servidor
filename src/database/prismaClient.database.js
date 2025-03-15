@@ -23,8 +23,11 @@ export const findUserJWT = async (id, email) => {
     return user
 }
 
-export const createUser = async (name, email, gitHub, password_hash) => {
-    const user = await prisma.user.create({
+export const createUser = async (name, email, password_hash, gitHub ) => {
+
+    console.log(name, email, gitHub, password_hash)
+
+    return await prisma.user.create({
         data: {
             name: name,
             email: email,

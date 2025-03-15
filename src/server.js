@@ -1,10 +1,15 @@
 import Fastify from "fastify";
 import fastifyCors from "@fastify/cors"; // Use @fastify/cors (versão mais atual)
 import fastifyJwt from "fastify-jwt";
-import userRoutes from "./routes/user.routes.js";
-import loginRoutes from "./routes/login.routes.js";
-import {useAuth} from "./hooks/useAuth.hook.js";
+
+import { useAuth } from "./hooks/useAuth.hook.js";
+
 import indexRoutes from "./routes/index.routes.js";
+import registerRoutes from "./routes/register.routes.js";
+import loginRoutes from "./routes/login.routes.js";
+import userRoutes from "./routes/user.routes.js";
+
+
 
 const app = Fastify();
 
@@ -28,9 +33,10 @@ app.register(fastifyJwt, {
 const port = process.env.PORT ? Number(process.env.PORT) : 3333;
 app.addHook("onRequest", useAuth);
 
+app.register(indexRoutes, { prefix: "/" });
+app.register(registerRoutes, { prefix: "/register" });
 app.register(loginRoutes, { prefix: "/login" });
 app.register(userRoutes, { prefix: "/protected-user" });
-app.register(indexRoutes, { prefix: "/" });
 
 app.listen({ host: "0.0.0.0", port: port }, () => {
   console.log(`Servidor Fastify rodando na porta ${port}`);
