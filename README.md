@@ -1,82 +1,88 @@
-# Login2.0-Servidor
+# login-v2-backend
 
-A robust authentication server built with modern JavaScript technologies, implementing JWT-based authentication and secure user management.
+Este repositório foi criado com o objetivo de estudar autenticação com **JWT nos cookies**, além de explorar boas práticas na organização do backend.
 
-## Technologies Used
+## 📚 Temas estudados
+- Autenticação com **JWT** armazenado em cookies
+- **Organização de pastas** no backend
+- **Deploy** de aplicações Node.js
+- **Versionamento do Node.js** e dependências
+- Uso do **Fastify** como framework backend
+- Implementação de **hooks**
+- **Hash de senhas** para segurança
 
-- **Fastify** - Modern and efficient web framework for Node.js
-- **Prisma** - Next-generation ORM for Node.js and TypeScript
-- **fastify-jwt** - JWT authentication for Fastify
-- **bcrypt** - Password hashing library
-- **ESModules** - Modern JavaScript modules
+## 🛠 Tecnologias utilizadas
+- **Node.js**
+- **Fastify**
+- **Prisma**
+- **Bcrypt**
+- **JWT**
+- **Render (Deploy)**
 
-## Project Structure
+## 🔄 Rotas da API
+| Método | Rota              | Descrição                       |
+|--------|------------------|----------------------------------|
+| `POST` | `/register`      | Cadastrar um novo usuário        |
+| `POST` | `/login`         | Realizar login                   |
+| `GET`  | `/protected-user` | Buscar informações do usuário   |
 
+## 📂 Estrutura do Backend
+/login-2.0-backend
+│── /src 
+│ │── /controller # Lógica dos controladores das rotas 
+│ │── /database # Funções Prisma para acesso ao banco de dados 
+│ │── /helper # Funções auxiliares específicas do programa 
+│ │── /hooks # Hooks do sistema 
+│ │── /model # Schemas Prisma 
+│ │── /routes # Definição das rotas da API 
+│ │── /service # Regras de negócio e serviços 
+│ │── /utils # Funções genéricas úteis durante o sistema 
+│ │── server.js # Arquivo principal do servidor 
+
+
+## 🚀 Como instalar e rodar o projeto
+
+### 1️⃣ Clone este repositório  
+```sh
+git clone https://github.com/GitDavidJr/login-2.0-backend.git
 ```
-src/
-├── controllers/      # Request handlers
-├── routes/          # API route definitions
-├── services/        # Business logic
-├── database/        # Database operations
-├── hooks/           # Middleware functions
-└── utils/           # Helper functions
+
+### 2️⃣ Acesse a pasta do projeto
+```sh
+cd login-2.0-backend
 ```
 
-## Core Features
+### 3️⃣ Instale as dependências
 
-- JWT-based authentication system
-- Protected routes with middleware validation
-- Password hashing with bcrypt
-- User management with Prisma ORM
-- Stateless authentication
-- Request validation and error handling
+```sh
+npm install
+```
 
-## API Endpoints
+### 4️⃣ Configure o ambiente
+Configure as variáveis de ambiente no arquivo .env na raiz do projeto.
 
-- `POST /login` - Authenticate user and receive JWT token
-- `POST /protected-user` - Protected route for authenticated users
+### 5️⃣ Execute as migrations do Prisma
+```sh
+npx prisma migrate dev
+```
 
-## Security Features
+### 6️⃣ Inicie o servidor
+```sh
+npm run dev
+```
 
-- Password hashing using bcrypt
-- JWT token expiration (1 hour)
-- Protected routes middleware
-- Token validation and verification
-- Secure password comparison
+## 🤝 Como contribuir
 
-## Installation
+1. Faça um fork deste repositório.
+2. Crie uma nova branch com sua funcionalidade (git checkout -b minha-feature).
+3. Commit suas alterações (git commit -m 'Minha nova feature').
+4. Faça o push para sua branch (git push origin minha-feature).
+5. Abra um Pull Request.
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/GitDavidJr/Login2.0-servidor.git
-    ```
+## ⭐ Dê uma estrela!
+Se este projeto te ajudou de alguma forma, considere deixar uma estrela ⭐ para apoiar o repositório!
 
-2. Install dependencies:
-    ```bash
-    cd Login2.0-servidor
-    npm install
-    ```
-
-3. Set up environment variables:
-    - Create `.env` file
-    - Add required variables:
-      - `PORT` - Server port (default: 3333)
-      - `SECRET_KEY` - JWT secret key
-      - Database connection URL
-
-4. Start the server:
-    ```bash
-    npm start
-    ```
-
-## Related Projects
-
-- Frontend Application: [Login2.0](https://github.com/GitDavidJr/Login2.0)
-
-## Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 🔗 Links relacionados
+- Versão anterior do login:[ Login 1.0](https://github.com/GitDavidJr/login-v1-frontend)
+- Frontend do Login 2.0: [Login 2.0 - Frontend](https://github.com/GitDavidJr/login-v2-frontend)
+- Servidor hospedado (Render): [Acesse aqui](https://login2-0-servidor.onrender.com)
