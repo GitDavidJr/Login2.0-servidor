@@ -38,7 +38,7 @@ export const auth = async (email, password, reply) => {
         const token = await reply.jwtSign({ id: user.id, email: user.email });
 
         response = {
-            user: hideSensitiveFields(userAuth),
+            user: hideSensitiveFields(user),
             token: token,
         };
         

@@ -9,6 +9,7 @@ export const register = async (name, email, password, gitHub, reply) => {
 
     // 1. Criar hash da senha
     const hash = await hashPassword(password);
+    
     // 2. Criar usuário no banco de dados
     try {
 
@@ -25,6 +26,7 @@ export const register = async (name, email, password, gitHub, reply) => {
     }
 
     console.log(user);
+
     // 3. Retornar dados do usuário cadastrado
     const token = await reply.jwtSign({ id: user.id, email: user.email });
 
