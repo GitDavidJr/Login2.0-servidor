@@ -27,6 +27,8 @@ Este repositório foi criado com o objetivo de estudar autenticação com **JWT 
 | `GET`  | `/protected-user` | Buscar informações do usuário   |
 
 ## 📂 Estrutura do Backend
+
+<pre> 
 /login-2.0-backend
 │── /src 
 │ │── /controller # Lógica dos controladores das rotas 
@@ -37,7 +39,8 @@ Este repositório foi criado com o objetivo de estudar autenticação com **JWT 
 │ │── /routes # Definição das rotas da API 
 │ │── /service # Regras de negócio e serviços 
 │ │── /utils # Funções genéricas úteis durante o sistema 
-│ │── server.js # Arquivo principal do servidor 
+│ │── server.js # Arquivo principal do servidor  
+</pre>
 
 
 ## 🚀 Como instalar e rodar o projeto
